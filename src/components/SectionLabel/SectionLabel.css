@@ -1,0 +1,8 @@
+.section-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--color-accent-text);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 12px;
+}

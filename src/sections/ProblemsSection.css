@@ -1,0 +1,15 @@
+.problems__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.problems__cta {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .problems__grid { grid-template-columns: 1fr; }
+}

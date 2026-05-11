@@ -1,0 +1,135 @@
+.pricing-flow {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.pricing-flow__headline {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.pricing-flow__sub {
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+.pricing-flow__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2.5rem;
+}
+
+.pricing-flow__step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.pricing-flow__step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pricing-flow__dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #064e3b;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pricing-flow__line {
+  width: 2px;
+  height: 40px;
+  background: var(--color-border-accent);
+  margin: 4px 0;
+}
+
+.pricing-flow__step-body {
+  padding-top: 7px;
+  padding-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.pricing-flow__step-body strong {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.pricing-flow__step-sub {
+  color: var(--color-text-subtle);
+}
+
+.pricing-flow__guarantee {
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.pricing-flow__guarantee-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-accent-text);
+  margin-bottom: 1rem;
+}
+
+.pricing-flow__guarantee ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pricing-flow__guarantee li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.pricing-flow__check {
+  color: var(--color-accent-text);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pricing-flow__factors-label {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: var(--color-accent-text);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.pricing-flow__factors {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pricing-flow__factor {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}

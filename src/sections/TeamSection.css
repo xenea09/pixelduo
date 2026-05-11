@@ -1,0 +1,16 @@
+.team__sub {
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 2rem;
+  font-size: 1rem;
+  max-width: 60ch;
+}
+
+.team__cards {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .team__cards { flex-direction: column; }
+}
