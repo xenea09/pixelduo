@@ -12,7 +12,7 @@ export function ImpressumContent() {
       <hr className="modal__divider" />
       <h3>Hinweis zur Unternehmensform</h3>
       <p>
-        pixelduo ist kein im Handelsregister eingetragenes Unternehmen.
+        B&amp;G Technologies ist kein im Handelsregister eingetragenes Unternehmen.
         Dieses Angebot wird als privates Projekt von Enea Bächler betrieben.
       </p>
       <hr className="modal__divider" />
@@ -46,7 +46,7 @@ export function DatenschutzContent() {
         E-Mail: <a href="mailto:baechlerenea@gmail.com">baechlerenea@gmail.com</a>
       </p>
       <p>
-        Diese Datenschutzerklärung gilt für die Webseite pixelduo.ch und
+        Diese Datenschutzerklärung gilt für die Webseite von B&amp;G Technologies und
         entspricht den Anforderungen des schweizerischen Datenschutzgesetzes
         (DSG, in Kraft seit 1. September 2023).
       </p>

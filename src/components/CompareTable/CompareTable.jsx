@@ -1,6 +1,6 @@
 import './CompareTable.css';
 
-export default function CompareTable({ rows, ourName = 'pixelduo', theirName = 'Andere Agenturen' }) {
+export default function CompareTable({ rows, ourName = 'B&G Technologies', theirName = 'Andere Agenturen' }) {
   return (
     <div className="compare-table">
       <div className="compare-table__header">

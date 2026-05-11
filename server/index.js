@@ -27,12 +27,12 @@ app.post('/api/contact', async (req, res) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'pixelduo <noreply@eneabaechler.ch>',
+        from: 'B&G Technologies <noreply@eneabaechler.ch>',
         to: ['baechlerenea@gmail.com'],
         subject: `Neue Anfrage von ${name} — ${PROJECT_LABELS[project] ?? project}`,
         reply_to: email,
         html: `
-          <h2 style="color:#4f6b3a">Neue Anfrage via pixelduo</h2>
+          <h2 style="color:#4f6b3a">Neue Anfrage via B&amp;G Technologies</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>E-Mail:</strong> <a href="mailto:${email}">${email}</a></p>
           <p><strong>Projekt:</strong> ${PROJECT_LABELS[project] ?? project}</p>

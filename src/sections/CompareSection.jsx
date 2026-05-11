@@ -8,9 +8,9 @@ export default function CompareSection() {
     <section className="section section--alt">
       <div className="container">
         <SectionLabel>DER VERGLEICH</SectionLabel>
-        <h2>Andere Agenturen vs. pixelduo</h2>
+        <h2>Andere Agenturen vs. B&amp;G Technologies</h2>
         <div className="compare__wrap">
-          <CompareTable rows={compareRows} ourName="pixelduo" theirName="Andere Agenturen" />
+          <CompareTable rows={compareRows} ourName="B&G Technologies" theirName="Andere Agenturen" />
         </div>
       </div>
     </section>

@@ -6,8 +6,8 @@ export default function Footer({ onImpressum, onDatenschutz }) {
       <div className="container footer__inner">
         <div className="footer__left">
           <span className="footer__logo">
-            <span className="footer__logo-pixel">pixel</span>
-            <span className="footer__logo-duo">duo</span>
+            <span className="footer__logo-pixel">B&amp;G</span>
+            <span className="footer__logo-duo"> Technologies</span>
           </span>
           <span className="footer__meta">Bern, Schweiz · © 2025</span>
         </div>

@@ -24,8 +24,8 @@ export default function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         <a href="#" className="navbar__logo" onClick={closeMenu}>
-          <span className="navbar__logo-pixel">pixel</span>
-          <span className="navbar__logo-duo">duo</span>
+          <span className="navbar__logo-pixel">B&amp;G</span>
+          <span className="navbar__logo-duo"> Technologies</span>
         </a>
 
         <div className="navbar__links">
