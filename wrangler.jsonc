@@ -9,6 +9,12 @@
   "assets": {
     "not_found_handling": "single-page-application"
   },
+  "kv_namespaces": [
+    {
+      "binding": "RATE_LIMIT",
+      "id": "bcdd66539f774e9aaccaacee407dc2ea"
+    }
+  ],
   "compatibility_flags": [
     "nodejs_compat"
   ]

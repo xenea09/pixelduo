@@ -10,12 +10,21 @@ const PROJECT_LABELS = {
   other: 'Anderes',
 };
 
+const COOLDOWN_MS = 20 * 60 * 1000;
+
+function getCooldownRemaining() {
+  const last = localStorage.getItem('lastContactSubmit');
+  if (!last) return 0;
+  return Math.max(0, COOLDOWN_MS - (Date.now() - Number(last)));
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', project: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
   const [errors, setErrors] = useState({});
+  const [cooldown, setCooldown] = useState(() => Math.ceil(getCooldownRemaining() / 60000));
 
   function validate() {
     const e = {};
@@ -40,6 +49,12 @@ export default function ContactForm() {
     const e2 = validate();
     if (Object.keys(e2).length) { setErrors(e2); return; }
 
+    const remaining = getCooldownRemaining();
+    if (remaining > 0) {
+      setCooldown(Math.ceil(remaining / 60000));
+      return;
+    }
+
     setSending(true);
     setSendError('');
 
@@ -50,10 +65,14 @@ export default function ContactForm() {
         body: JSON.stringify({ ...form, name: `${form.firstName} ${form.lastName}` }),
       });
 
-      if (!res.ok) throw new Error('Senden fehlgeschlagen');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? 'Senden fehlgeschlagen');
+      }
+      localStorage.setItem('lastContactSubmit', String(Date.now()));
       setSubmitted(true);
-    } catch {
-      setSendError('Etwas ist schiefgelaufen. Schreib uns direkt an baechlerenea@gmail.com.');
+    } catch (err) {
+      setSendError(err.message ?? 'Etwas ist schiefgelaufen. Schreib uns direkt an baechlerenea@gmail.com.');
     } finally {
       setSending(false);
     }
@@ -143,7 +162,10 @@ export default function ContactForm() {
         {errors.message && <span className="contact-form__error">{errors.message}</span>}
       </div>
       {sendError && <p className="contact-form__error">{sendError}</p>}
-      <button type="submit" className="contact-form__submit" disabled={sending}>
+      {cooldown > 0 && (
+        <p className="contact-form__error">Bitte warte noch {cooldown} Minute{cooldown === 1 ? '' : 'n'} vor der nächsten Anfrage.</p>
+      )}
+      <button type="submit" className="contact-form__submit" disabled={sending || cooldown > 0}>
         {sending ? 'Wird gesendet…' : 'Anfrage absenden →'}
       </button>
     </form>

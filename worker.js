@@ -10,6 +10,19 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === '/api/contact' && request.method === 'POST') {
+      const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
+      const rateLimitKey = `contact:${ip}`;
+      const LIMIT_MS = 20 * 60 * 1000;
+
+      const lastSent = await env.RATE_LIMIT.get(rateLimitKey);
+      if (lastSent) {
+        const remaining = Math.ceil((LIMIT_MS - (Date.now() - Number(lastSent))) / 60000);
+        return Response.json(
+          { error: `Bitte warte noch ${remaining} Minute${remaining === 1 ? '' : 'n'} vor der nächsten Anfrage.` },
+          { status: 429 }
+        );
+      }
+
       let body;
       try {
         body = await request.json();
@@ -52,6 +65,7 @@ export default {
         return Response.json({ error: 'E-Mail konnte nicht gesendet werden' }, { status: 500 });
       }
 
+      await env.RATE_LIMIT.put(rateLimitKey, String(Date.now()), { expirationTtl: 20 * 60 });
       return Response.json({ ok: true });
     }
 
