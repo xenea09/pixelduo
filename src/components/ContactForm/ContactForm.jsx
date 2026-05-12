@@ -11,7 +11,7 @@ const PROJECT_LABELS = {
 };
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', project: '', message: '' });
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', project: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
@@ -19,7 +19,8 @@ export default function ContactForm() {
 
   function validate() {
     const e = {};
-    if (!form.name.trim()) e.name = 'Name ist erforderlich.';
+    if (!form.firstName.trim()) e.firstName = 'Vorname ist erforderlich.';
+    if (!form.lastName.trim()) e.lastName = 'Nachname ist erforderlich.';
     if (!form.email.trim()) e.email = 'E-Mail ist erforderlich.';
     else if (!EMAIL_RE.test(form.email)) e.email = 'Bitte eine gültige E-Mail eingeben.';
     if (!form.project) e.project = 'Bitte wähle eine Option.';
@@ -46,7 +47,7 @@ export default function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, name: `${form.firstName} ${form.lastName}` }),
       });
 
       if (!res.ok) throw new Error('Senden fehlgeschlagen');
@@ -72,31 +73,44 @@ export default function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <div className="contact-form__row">
         <div className="contact-form__field">
-          <label htmlFor="cf-name">Name</label>
+          <label htmlFor="cf-firstName">Vorname</label>
           <input
-            id="cf-name"
-            name="name"
+            id="cf-firstName"
+            name="firstName"
             type="text"
-            placeholder="Dein Name"
-            value={form.name}
+            placeholder="Dein Vorname"
+            value={form.firstName}
             onChange={handleChange}
-            className={errors.name ? 'error' : ''}
+            className={errors.firstName ? 'error' : ''}
           />
-          {errors.name && <span className="contact-form__error">{errors.name}</span>}
+          {errors.firstName && <span className="contact-form__error">{errors.firstName}</span>}
         </div>
         <div className="contact-form__field">
-          <label htmlFor="cf-email">E-Mail</label>
+          <label htmlFor="cf-lastName">Nachname</label>
           <input
-            id="cf-email"
-            name="email"
-            type="email"
-            placeholder="deine@email.ch"
-            value={form.email}
+            id="cf-lastName"
+            name="lastName"
+            type="text"
+            placeholder="Dein Nachname"
+            value={form.lastName}
             onChange={handleChange}
-            className={errors.email ? 'error' : ''}
+            className={errors.lastName ? 'error' : ''}
           />
-          {errors.email && <span className="contact-form__error">{errors.email}</span>}
+          {errors.lastName && <span className="contact-form__error">{errors.lastName}</span>}
         </div>
+      </div>
+      <div className="contact-form__field">
+        <label htmlFor="cf-email">E-Mail</label>
+        <input
+          id="cf-email"
+          name="email"
+          type="email"
+          placeholder="deine@email.ch"
+          value={form.email}
+          onChange={handleChange}
+          className={errors.email ? 'error' : ''}
+        />
+        {errors.email && <span className="contact-form__error">{errors.email}</span>}
       </div>
       <div className="contact-form__field">
         <label htmlFor="cf-project">Was brauchst du?</label>
